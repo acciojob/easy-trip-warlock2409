@@ -61,13 +61,12 @@ public class AirportRepository {
     }
     public String getAirportNameFromFlightId(int id){
         if(flightRepo.containsKey(id)) {
-            return flightRepo.get(id).getFromCity().toString();
-//            Flight flight = flightRepo.get(id);
-//            for(String port : airPortRepo.keySet()){
-//                if(airPortRepo.get(port).getCity().equals(flight.getFromCity())){
-//                    return flight.getFromCity().toString();
-//                }
-//            }
+            City fromCity = flightRepo.get(id).getFromCity();
+            for(String port : airPortRepo.keySet()){
+                if(airPortRepo.get(port).getCity().equals(fromCity)){
+                    return airPortRepo.get(port).getAirportName();
+                }
+            }
         }
         return null;
     }
